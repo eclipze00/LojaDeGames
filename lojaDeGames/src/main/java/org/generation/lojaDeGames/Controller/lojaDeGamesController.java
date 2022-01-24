@@ -14,9 +14,11 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.CrossOrigin;
+import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
@@ -53,6 +55,16 @@ public class lojaDeGamesController {
 		return ResponseEntity.status(201).body(repository.save(newCategoria));
 	}
 
+	@PutMapping("/update")
+	public ResponseEntity<Categoria>updateCategoria(@RequestBody Categoria categoria){
+		return ResponseEntity.status(200).body(repository.save(categoria));
+	}
+	
+	@DeleteMapping("/{id}")
+	public void deleteCategoria(@PathVariable long id) {
+		repository.deleteById(id);
+	
+		}
 }
 
 

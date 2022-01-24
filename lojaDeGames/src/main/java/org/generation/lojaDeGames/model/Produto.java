@@ -5,7 +5,7 @@ package org.generation.lojaDeGames.model;
  * @version 0.03
   */
 
-import java.sql.Date;
+import java.util.Date;
 
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
