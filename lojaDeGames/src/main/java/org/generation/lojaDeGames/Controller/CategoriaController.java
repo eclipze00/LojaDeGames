@@ -32,7 +32,7 @@ import org.springframework.web.server.ResponseStatusException;
 
 @RestController
 @RequestMapping("/categoria")
-@CrossOrigin("*")
+@CrossOrigin(origins = "*", allowedHeaders = "*")
 public class CategoriaController {
 	@Autowired
 	private CategoriaRepository repository;
@@ -42,8 +42,8 @@ public class CategoriaController {
 		return ResponseEntity.ok(repository.findAll());
 	}
 	
-	@GetMapping("/categoria/{id}")
-	public ResponseEntity<Categoria>findByGenero(@PathVariable (value = "id") long id){
+	@GetMapping("/{id}")
+	public ResponseEntity<Categoria>findByGenero(@PathVariable long id){
 		return repository.findById(id)
 				.map(resp -> ResponseEntity.status(200).body(resp))
 				.orElseGet(() -> {
@@ -51,7 +51,7 @@ public class CategoriaController {
 				});
 	}
 		
-	@GetMapping("/categoria/{genero}")
+	@GetMapping("/genero/{genero}")
 	public ResponseEntity<List<Categoria>> getByGenero(@PathVariable String genero){
 		return ResponseEntity.ok(repository.findAllByGeneroContainingIgnoreCase(genero));
 	}

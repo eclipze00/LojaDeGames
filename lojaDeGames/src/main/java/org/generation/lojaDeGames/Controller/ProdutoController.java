@@ -6,7 +6,6 @@ package org.generation.lojaDeGames.Controller;
  * @version 0.01
  */
 import java.util.List;
-
 import org.generation.lojaDeGames.model.Produto;
 import org.generation.lojaDeGames.repository.ProdutoRepository;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -23,11 +22,11 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.server.ResponseStatusException;
 
-public class ProdutoController {
 @RestController
 @RequestMapping("/produto")
 @CrossOrigin("*")
-public class lojaDeGamesController {
+public class ProdutoController {
+
 	@Autowired
 	private ProdutoRepository repository;
 
@@ -36,16 +35,17 @@ public class lojaDeGamesController {
 		return ResponseEntity.ok(repository.findAll());
 	}
 
-	@GetMapping("/produto/{id}")
+	@GetMapping("/{id}")
 	public ResponseEntity<Produto> findByNome(@PathVariable(value = "id") long id) {
 		return repository.findById(id).map(resp -> ResponseEntity.status(200).body(resp)).orElseGet(() -> {
 			throw new ResponseStatusException(HttpStatus.NO_CONTENT, "ID não Encontrado");
 		});
 	}
 
-	@GetMapping("/produto/{nome}")
+	@GetMapping("/nome/{nome}")
 	public ResponseEntity<List<Produto>> getByNome(@PathVariable String nome) {
 		return ResponseEntity.ok(repository.findAllByNomeContainingIgnoreCase(nome));
+
 	}
 
 	@PostMapping("/save")
@@ -62,5 +62,4 @@ public class lojaDeGamesController {
 	public void deleteNome(@PathVariable long id) {
 		repository.deleteById(id);
 	}
-}
 }
