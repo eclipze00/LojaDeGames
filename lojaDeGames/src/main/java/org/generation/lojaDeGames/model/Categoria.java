@@ -4,6 +4,7 @@ package org.generation.lojaDeGames.model;
  * @author Guilherme Barbosa Rodrigues
  * @since 24/01/2022
  * @version 0.01
+ * 
  */
 
 import java.util.List;
