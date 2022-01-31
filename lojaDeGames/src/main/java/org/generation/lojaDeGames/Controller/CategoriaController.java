@@ -1,12 +1,12 @@
 package org.generation.lojaDeGames.Controller;
 
-import java.util.List;
-
-/*
+/* 
  * @author Wesley Barreto Coelho
  * @since 24/01/2022
- * @version 0.01
+ * @version 0.04
  */
+
+import java.util.List;
 
 import org.generation.lojaDeGames.model.Categoria;
 import org.generation.lojaDeGames.repository.CategoriaRepository;

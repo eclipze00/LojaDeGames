@@ -1,5 +1,11 @@
 package org.generation.lojaDeGames.model;
 
+/*
+ * @author Guilherme Barbosa Rodrigues
+ * @since 31/01/2022
+ * @version 1.01
+  */
+
 public class UserLogin {
 	
 	private String nome;
