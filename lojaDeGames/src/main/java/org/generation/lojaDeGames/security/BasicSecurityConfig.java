@@ -36,7 +36,8 @@ public class BasicSecurityConfig extends WebSecurityConfigurerAdapter {
 	
 	@Override
 	protected void configure(HttpSecurity http) throws Exception{
-		http.authorizeRequests().antMatchers("/usuario/logar").permitAll() //libera endpoints para que não seja preciso acessá-los com Token
+		http.authorizeRequests()
+		.antMatchers("/usuario/logar").permitAll() //libera endpoints para que não seja preciso acessá-los com Token
 		.antMatchers("/usuario/cadastrar").permitAll()
 		.anyRequest().authenticated() //todas as outras requesições precisaram de autenticação
 		.and().httpBasic() //utiliza o padrão Basic para gerar o Token

@@ -11,36 +11,46 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
 
-@Service				//--Serviços
+@Service
 public class UsuarioService {
 
 	@Autowired
 	private UsuarioRepository repository;
-	//Regra de negocio para cadastrar usuario 
-	public Usuario CadastrarUsuario(Usuario usuario) {
-		BCryptPasswordEncoder encoder = new BCryptPasswordEncoder();
-		String senhaEncoder = encoder.encode(usuario.getSenha());
+
+	public Optional<Usuario> cadastrarUsuario (Usuario usuario) {
+
+		Optional<Usuario> optional = repository.findByUsuario(usuario.getUsuario());
+
+		if (optional.isPresent()) {
+			return Optional.empty();
+		}
+
+		BCryptPasswordEncoder enconder = new BCryptPasswordEncoder();
+
+		String senhaEncoder = enconder.encode(usuario.getSenha());
 		usuario.setSenha(senhaEncoder);
-		return repository.save(usuario);
+
+		return Optional.ofNullable(repository.save(usuario));
 	}
-	
-	public Optional<UserLogin> Logar (Optional<UserLogin>user){
-		BCryptPasswordEncoder encoder = new BCryptPasswordEncoder();
-		Optional<Usuario>usuario = repository.findByUsuario(user.get().getUsuario());
-		if(usuario.isPresent()) {
-			if(encoder.matches(user.get().getSenha(),usuario.get().getSenha())){
+
+	public Optional<UserLogin> login (Optional<UserLogin> user) {
+		BCryptPasswordEncoder enconder = new BCryptPasswordEncoder();
+		Optional<Usuario> usuario = repository.findByUsuario(user.get().getUsuario());
+
+		if (usuario.isPresent()) {
+			if (enconder.matches(user.get().getSenha(), usuario.get().getSenha())) {
+
 				String auth = user.get().getUsuario() + ":" + user.get().getSenha();
-				byte[]encoderAuth = Base64.encodeBase64(auth.getBytes(Charset.forName("US-ASCII")));
-				String authHeader = "Basic " + new String (encoderAuth);
-				
+				byte[] encondeAuth = Base64.encodeBase64(auth.getBytes(Charset.forName("US-ASCII")));
+				String authHeader = "Basic " + new String(encondeAuth);
+
 				user.get().setToken(authHeader);
 				user.get().setNome(usuario.get().getNome());
+
 				return user;
-				
 			}
 		}
-		
+
 		return null;
 	}
-		
 }
