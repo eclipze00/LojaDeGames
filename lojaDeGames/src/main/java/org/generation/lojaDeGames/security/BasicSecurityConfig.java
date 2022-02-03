@@ -48,6 +48,8 @@ public class BasicSecurityConfig extends WebSecurityConfigurerAdapter {
 		.antMatchers("/usuario/logar").permitAll() //libera endpoints para que não seja preciso acessá-los com Token
 		.antMatchers("/usuario/cadastrar").permitAll()
 		.antMatchers("/usuario/atualizar").permitAll()
+		.antMatchers("/categoria/all").permitAll()
+		.antMatchers("/produto/all").permitAll()
 		.anyRequest().authenticated() //todas as outras requesições precisaram de autenticação
 		.and().httpBasic() //utiliza o padrão Basic para gerar o Token
 		.and().sessionManagement() //indica o tipo de sessão que será utilizada

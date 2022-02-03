@@ -28,10 +28,11 @@ import org.springframework.web.server.ResponseStatusException;
 @RequestMapping("/categoria")
 @CrossOrigin(origins = "*", allowedHeaders = "*")
 public class CategoriaController {
+	
 	@Autowired
 	private CategoriaRepository repository;
 	
-	@GetMapping
+	@GetMapping("/all")
 	public ResponseEntity<List<Categoria>>GetAll(){
 		return ResponseEntity.ok(repository.findAll());
 	}

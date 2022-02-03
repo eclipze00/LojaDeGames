@@ -30,7 +30,7 @@ public class ProdutoController {
 	@Autowired
 	private ProdutoRepository repository;
 
-	@GetMapping
+	@GetMapping("/all")
 	public ResponseEntity<List<Produto>> GetAll() {
 		return ResponseEntity.ok(repository.findAll());
 	}
@@ -54,7 +54,7 @@ public class ProdutoController {
 	}
 
 	@PutMapping("/update")
-	public ResponseEntity<Produto> updateNome(@RequestBody Produto nome) {
+	public ResponseEntity<Produto> updateNome (@RequestBody Produto nome) {
 		return ResponseEntity.status(200).body(repository.save(nome));
 	}
 
