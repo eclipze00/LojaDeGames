@@ -5,8 +5,11 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.Table;
+import javax.validation.constraints.Email;
 import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.Size;
+
+import io.swagger.v3.oas.annotations.media.Schema;
 
 @Entity
 @Table(name = "usuario")
@@ -20,7 +23,9 @@ public class Usuario {
 	@Size(min = 3, max = 100)
 	private String nome;
 	
-	@NotBlank
+	@Schema (example = "email@email.com")
+	@NotBlank (message = "O atributo Usuário é Obrigatório!")
+	@Email (message = "Deve ser um email válido!")
 	@Size(min = 3, max = 100)
 	private String usuario;
 	

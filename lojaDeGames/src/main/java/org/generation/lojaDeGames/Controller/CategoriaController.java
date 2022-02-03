@@ -1,4 +1,4 @@
-package org.generation.lojaDeGames.Controller;
+package org.generation.lojaDeGames.controller;
 
 /* 
  * @author Wesley Barreto Coelho
