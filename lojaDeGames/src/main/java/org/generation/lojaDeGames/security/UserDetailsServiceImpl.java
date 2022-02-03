@@ -1,4 +1,10 @@
 package org.generation.lojaDeGames.security;
+/*
+ * @Autor Darllan Lopes
+ * @Date 03/02/2022
+ * @Version 1.05  
+ */
+
 
 import java.util.Optional;
 
